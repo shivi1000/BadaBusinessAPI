@@ -26,10 +26,16 @@ export async function insertInterest( data:any ) {
 
 }
 
-export async function checkUser( phoneNumber:any) {
-    const userExist = await user.findOne(phoneNumber );
-    return userExist;
+// export async function checkUser( phoneNumber:any) {
+//     const userExist = await user.findOne(phoneNumber );
+//     return userExist;
 
-}
+// }
+
+// export async function generate( phoneNumber:any) {
+//     const newUser = await user.create({
+//     phoneNumber: phoneNumber })
+//     return newUser;
+// }
 
 

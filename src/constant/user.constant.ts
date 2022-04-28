@@ -26,12 +26,11 @@ export const STATUS_MSG = {
       message: "Password does not match with confirm password",
     },
 
-    INCORRECT_CREDENTIALS:(msg: any) => {
-      return {
-      statusCode: 400,
-      success: false,
-      message: "Incorrect credentials. Please sign-up first",
-      type: "INCORRECT_CREDENTIALS",}
+    INCORRECT_CREDENTIALS: {
+        //statusCode: 400,
+        success: false,
+        message: "Incorrect credentials, OTP is wrong",
+        //type: "INCORRECT_CREDENTIALS",
     },
     BLOCKED_ACCOUNT: {
       statusCode: 403,
@@ -70,20 +69,21 @@ export const STATUS_MSG = {
       message: "DB Error : ",
       type: "DB_ERROR",
     },
-    INVALID_TOKEN:{
-        statusCode: 401,
-        success: false,
-        message: "Invalid token provided",
-        type: "INVALID_TOKEN",
-    },
-
-    UNAUTHORIZED: (msg: any) =>{
-      return{
+    INVALID_TOKEN: {
       statusCode: 401,
       success: false,
-      message: msg,
-      //message: "You are not authorized to perform this action",
-      type: "UNAUTHORIZED",}
+      message: "Invalid token provided",
+      type: "INVALID_TOKEN",
+    },
+
+    UNAUTHORIZED: (msg: any) => {
+      return {
+        statusCode: 401,
+        success: false,
+        //message: msg,
+        message: "Invalid OTP",
+        type: "UNAUTHORIZED",
+      };
     },
     UNAUTHORIZED_ADMIN: {
       statusCode: 408,
@@ -121,14 +121,20 @@ export const STATUS_MSG = {
         type: "BAD_REQUEST",
       };
     },
-    ACTION_NOT_ALLOWED: {
-       
-        statusCode: 406,
-        success: false,
-        message: "User Already Exist",
-        type: "ACTION_NOT_ALLOWED",
-      
+    USER_EXIST: {
+      statusCode: 406,
+      success: false,
+      message: "User Already Exist",
+      type: "ACTION_NOT_ALLOWED",
     },
+
+    PROVIDE_PHONE_NUMBER: {
+      statusCode: 402,
+      success: false,
+      message: "Please provide a valid phone number",
+      type: "ACTION_NOT_ALLOWED",
+    },
+
     DEFAULT_ERROR_MESSAGE: (message: String) => {
       return {
         statusCode: 401,
@@ -141,25 +147,41 @@ export const STATUS_MSG = {
 
   SUCCESS: {
     DEFAULT: {
-      statusCode: 200,
+      //statusCode: 200,
       success: true,
       message: "Successfully Signed up",
-      name: "DEFAULT",
+      //name: "DEFAULT",
     },
-    LOGIN: (msg:any) =>{
+
+    OTP: {
+      statusCode: 200,
+      //success: true,
+      message: "OTP has been sent successfully on your phoneNumber ",
+      //type: "DEFAULT",
+    },
+
+    OTP_VERIFY: {
+      //statusCode: 200,
+      success: true,
+      message: "OTP has been successfully verified",
+      //type: "DEFAULT",
+    },
+
+    LOGIN: (msg: any) => {
       return {
         statusCode: 200,
         success: true,
         message: msg,
-        name: "Success",}
+        name: "Success",
+      };
     },
     CREATED: (msg: any) => {
       return {
         statusCode: 201,
-        success: true,
+        //success: true,
         message: "Created Successfully",
         data: msg,
-        type: "CREATED",
+        //type: "CREATED",
       };
     },
     PROFILE_UPDATED: {
