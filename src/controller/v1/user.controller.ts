@@ -1,110 +1,70 @@
-import express, { Request, NextFunction, Response } from "express";
-import User from "../../models/user.model";
-import userSignup from "../../utils/user.validation";
-import jwt from "jsonwebtoken";
+import express, { Request, Response } from "express";
 export const app = express();
+import { STATUS_MSG } from "../../constant/user.constant";
+import { checkexist, createUser, insertInterest } from "../../entity/v1/user.entity";
+import userSignup from "../../utils/user.validation";
+import Jwt from "jsonwebtoken";
 app.use(express.json());
-import { Twilio } from "twilio";
-import { STATUS_MSG } from "../../constant";
 
-const accountSid = <string>process.env.TWILIO_ACCOUNT_SID;
-const authToken = <string>process.env.TWILIO_AUTH_TOKEN;
-const serviceID = <string>process.env.SERVICE_ID;
-console.log(process.env.TWILIO_ACCOUNT_SID)
-const client = new Twilio(accountSid, authToken);
-// const client = require('twilio')(accountSid, authToken)
-// console.log(serviceID)
-
-class logic {
-
-signup =  async(req: Request, res: Response, next: NextFunction) => {
-  try {
-    await userSignup.validateAsync(req.body);
-    console.log(req.body);
-
-    const { firstName, lastName, phoneNumber, email, userType } = req.body;
-    const user = await User.create({
-      firstName,
-      lastName,
-      phoneNumber,
-      email,
-      userType,
-    });
-
-    let token = jwt.sign({_id: user._id} , <string>process.env.JWT_SECRET_KEY)
-
-    res.status(201).json({ message:"User Signedup Successfully", token:token, user:user, 
-    status: STATUS_MSG.SUCCESS.CREATED,});
-  } catch (err: any) {
-    res.status(402).json({message:"invalid credential or user already exist",Error: err.message});
+class userControllerClass {
+  
+  async signup(req: Request, res: Response): Promise<void> {
+    try {
+      await userSignup.validateAsync(req.body);
+      console.log(req.body)
+      const oldUser = await checkexist(req.body.email);
+      if (oldUser) {
+        res.status(406).json(STATUS_MSG.ERROR.ACTION_NOT_ALLOWED)
+      } else {
+        var newUser = await createUser(req.body);
+        let token: any = Jwt.sign({ _id: newUser._id },<string>process.env.JWT_SECRET_KEY);
+        res.status(201).json(STATUS_MSG.SUCCESS.CREATED({ newUser, token }));
+      }
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE);
+    }
   }
+
+
+  async interest(req: Request, res: Response): Promise<void> {
+    try {
+      const newUser = await insertInterest(req.body);
+      if (newUser) {
+        res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT);
+      } else {
+        res.status(400).json(STATUS_MSG.ERROR.NOT_EXIST);
+      }
+    } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE);
+    }
+      
+  }
+
+
+// async login_generateOtp(req: Request, res: Response): Promise<void> {
+  //   try {
+  //     const userData: any = await userService.login_generateOtp(req.body);
+  //     if (userData) {
+  //       res.status(200).json(STATUS_MSG.SUCCESS.LOGIN("OTP sent successfully."));
+  //     }
+  //   } catch (err) {
+  //     res.status(404).json(STATUS_MSG.ERROR.INCORRECT_CREDENTIALS("Error"));
+  //   }
+  // }
+
+  // async login_verifyOtp(req: Request, res: Response): Promise<void> {
+  //   try {
+  //     const userData: any = await userService.login_verifyOtp(req.body);
+  //     if (userData) {
+  //       res.status(200).json(STATUS_MSG.SUCCESS.LOGIN("Otp verified"));
+  //     }
+  //   } catch (err: any) {
+  //     res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
+  //   }
+  // }
+
 }
 
-
-
-interest = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const _id =  req.body.tokenId;
-    const Dataupdated = await User.updateOne({_id }, { $set: { "interest": req.body.interest } }); 
-    res.status(201).json({ message: "Success"})
-  } catch (err: any) {
-    res.status(402).json({ message: "Invalid Token"})
-  }
-};
-
-
-login_generateOtp = async (req: Request, res: Response) => {
-  try {
-      const { phoneNumber } = req.body;
-      const userExist = await User.findOne({ phoneNumber: phoneNumber });
-      if (!userExist) {
-          const userDocument = new User({
-              phoneNumber: phoneNumber,
-          })
-          await client.verify.services(serviceID)
-              .verifications
-              .create({ to: `+${userDocument.phoneNumber}`, channel: 'sms' })
-              .then((verification: any) => res.json({message : verification.status}))
-      }
-      else {
-          return res.status(400).json({message : "User already exist"})
-      }
-  }
-  catch (error: any) {
-      return res.json({message : error.message})
-  }
-}
-
-login_verifyOtp = async (req: Request, res: Response) => {
-  try {
-      const { otp, phoneNumber } = req.body
-      let otpData: any
-      await client.verify.services(serviceID)
-          .verificationChecks
-          .create({ to: `+${phoneNumber}`, code: otp })
-          .then((verification_check: any) => {
-              otpData = verification_check
-          });
-
-      if (otpData != undefined && otpData.status == 'approved') {
-          console.log(otpData.status)
-          // const userDocument = new User({
-          //     phoneNumber: phoneNumber
-          // })
-          // await userDocument.save()
-          res.json({message :"user Logged In"})
-      }
-      else {
-          return res.json({message :"Invalid otp"})
-      }
-  }
-  catch (err : any) {
-      res.json({message : err.message})
-  }
-}
-    
-}
-
-export const logico = new logic()
+export const userController = new userControllerClass();
 
 

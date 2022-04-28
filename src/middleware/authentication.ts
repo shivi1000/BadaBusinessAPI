@@ -19,11 +19,13 @@ export default function verifyToken(req: Request, res: Response, next: NextFunct
             }
             else {
                 req.body.tokenId = userVerification._id;
+                console.log(req.body.tokenId);
+                
                 next();
             }
         }
     }
     catch(err : any){
-        res.json({message : "pklease provide right token"})
+        res.json({message : "please provide right token"})
     }
 }
