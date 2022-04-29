@@ -11,16 +11,12 @@ export default function verifyToken(req: Request, res: Response, next: NextFunct
         else {
             const jwtSecret = String(process.env.JWT_SECRET_KEY);
             const userVerification:any= jwt.verify(`${req.headers["authorization"]}`, jwtSecret);
-            // console.log(userVerification);
-            
-            
             if (!userVerification) {
                 res.send({ msg: "Authentication error" })
             }
             else {
                 req.body.tokenId = userVerification._id;
                 console.log(req.body.tokenId);
-                
                 next();
             }
         }

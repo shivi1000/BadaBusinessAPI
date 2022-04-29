@@ -1,5 +1,6 @@
 import  { Schema, model } from 'mongoose';
 import {User} from '../interface/interface';
+import { DBENUMS } from '../constant/enum.constants';
 
 
 const Schemas = new Schema({
@@ -36,10 +37,8 @@ const Schemas = new Schema({
    interest: {
     type: [String],
     required: true,
-    enum: ["Sales", "Marketing", "Bhagvad Gita", "Leadership Building", "Motivation and Mind Control", 
-           "Student", "Strategy", "Business Case study", "Geographic Case Studies", 
-           "HR and People Management", "Process and Business Expansion"]
-
+    enum:DBENUMS.INTEREST
+    
    },
 
 });

@@ -1,6 +1,8 @@
 import Joi from 'joi';
+import { DBENUMS } from '../constant/enum.constants';
 
-const userSignup = Joi.object({
+class userValidationClass {
+userSignup = Joi.object({
     firstName: Joi.string().trim().min(3).max(15).lowercase().required(),
     lastName: Joi.string().trim().min(3).max(15).lowercase().required(),
     phoneNumber: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
@@ -9,4 +11,10 @@ const userSignup = Joi.object({
 
 })
 
-export default userSignup
+userInterest = Joi.object({
+    interest: Joi.string().trim().lowercase().required().valid(...Object.values(DBENUMS.INTEREST))
+})
+
+}
+
+export const userValidation = new userValidationClass();

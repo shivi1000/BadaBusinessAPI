@@ -129,13 +129,13 @@ export const STATUS_MSG = {
     },
 
     PROVIDE_PHONE_NUMBER: {
-      //statusCode: 402,
+      statusCode: 402,
       success: false,
       message: "Please provide a valid phone number",
       type: "ACTION_NOT_ALLOWED",
     },
 
-    DEFAULT_ERROR_MESSAGE: (message: String) => {
+    DEFAULT_ERROR_MESSAGE: (message:any) => {
       return {
         statusCode: 401,
         success: false,
@@ -155,9 +155,9 @@ export const STATUS_MSG = {
 
     OTP: {
       statusCode: 200,
-      //success: true,
+      success: true,
       message: "OTP has been sent successfully on your phoneNumber ",
-      //type: "DEFAULT",
+      type: "DEFAULT",
     },
 
     OTP_VERIFY: {

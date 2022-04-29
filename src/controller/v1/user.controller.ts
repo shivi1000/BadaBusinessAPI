@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/user.constant";
 import {checkexist,createUser,insertInterest} from "../../entity/v1/user.entity";
-import userSignup from "../../utils/user.validation";
+import {userValidation,} from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
 app.use(express.json());
@@ -31,7 +31,7 @@ class userControllerClass {
 
   async userDetails(req: Request, res: Response): Promise<void> {
     try {
-      await userSignup.validateAsync(req.body);
+      await userValidation.userSignup.validateAsync(req.body);
       const oldUser = await checkexist(req.body.email);
       if (oldUser) {
         res.status(406).json(STATUS_MSG.ERROR.USER_EXIST);
