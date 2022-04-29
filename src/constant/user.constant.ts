@@ -161,10 +161,10 @@ export const STATUS_MSG = {
     },
 
     OTP_VERIFY: {
-      //statusCode: 200,
+      statusCode: 200,
       success: true,
       message: "OTP has been successfully verified",
-      //type: "DEFAULT",
+      type: "DEFAULT",
     },
 
     LOGIN: (msg: any) => {
