@@ -26,30 +26,25 @@ class userServiceClass {
     }
   }
 
-//   async signup_verifyOtp(data: any): Promise<Object> {
-//     try {
-//         const { otp, phoneNumber } = data;
-//         let otpData: any 
-//         await client.verify
-//           .services(serviceID)
-//           .verificationChecks.create({
-//             to: `+${data.phoneNumber}`,
-//             code: data.otp,
-//           })
-//           .then((verification_check: any) => {
-//             otpData = verification_check;
-//           });
-  
-//         if (otpData.status != undefined && otpData.status === "approved") {
-//           return Promise.resolve(STATUS_MSG.SUCCESS.OTP_VERIFY);
-//         } else {
-//           return Promise.reject(STATUS_MSG.ERROR.INCORRECT_CREDENTIALS);
-//         }
-//       } catch (err: any) {
-//         return Promise.reject(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE("Error"));
-//       }
+  async signup_verifyOtp(data: any): Promise<Object> {
+    try {
+        const { otp, phoneNumber } = data;
+        let otpData: any 
+        await client.verify
+          .services(serviceID)
+          .verificationChecks.create({to: `+${data.phoneNumber}`,code: data.otp,})
+          .then((verification_check: any) => {
+            otpData = verification_check;});
+        if (otpData.status != undefined && otpData.status === "approved") {
+          return Promise.resolve(STATUS_MSG.SUCCESS.OTP_VERIFY);
+        } else {
+          return Promise.reject(STATUS_MSG.ERROR.INCORRECT_CREDENTIALS);
+        }
+      } catch (err: any) {
+        return Promise.reject(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE("Error"));
+      }
 
-//   }
+  }
 
 
 

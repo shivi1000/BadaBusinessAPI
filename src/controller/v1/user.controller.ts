@@ -5,6 +5,7 @@ import {checkexist,createUser,insertInterest} from "../../entity/v1/user.entity"
 import userSignup from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
+import { DataSessionPage } from "twilio/lib/rest/wireless/v1/sim/dataSession";
 app.use(express.json());
 
 class userControllerClass {
@@ -43,7 +44,7 @@ class userControllerClass {
 
   async signup_generateOtp(req: Request, res: Response): Promise<void> {
     try {
-      let data: any = await userService.signup_generateOtp(req.body);
+      const data: any = await userService.signup_generateOtp(req.body);
       console.log(data);
       res.status(200).json(data);
     } catch (err:any) {
@@ -51,9 +52,15 @@ class userControllerClass {
     }
   }
 
-  // async signup_verifyOtp(req: Request, res: Response): Promise<void> {
-
-  // }
+  async signup_verifyOtp(req: Request, res: Response): Promise<void> {
+    try {
+      const data: any = await userService.signup_verifyOtp(req.body);
+      console.log(data);
+        res.status(200).json(data);
+    } catch (err: any) {
+      res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
+    }
+  }
 
 }
 
