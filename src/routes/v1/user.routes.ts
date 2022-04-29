@@ -8,7 +8,7 @@ router.post("/user/signup/generateOtp", userController.signup_generateOtp);
 
 router.post("/user/signup/verifyOtp", userController.signup_verifyOtp);
 
-router.post("/user/detail", userController.userDetails);
+router.post("/user/details", userController.userDetails);
 
 router.post("/user/interest", verifyToken, userController.interest);
 

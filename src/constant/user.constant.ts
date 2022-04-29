@@ -122,14 +122,14 @@ export const STATUS_MSG = {
       };
     },
     USER_EXIST: {
-      statusCode: 406,
+      //statusCode: 406,
       success: false,
       message: "User Already Exist",
-      type: "ACTION_NOT_ALLOWED",
+      //type: "ACTION_NOT_ALLOWED",
     },
 
     PROVIDE_PHONE_NUMBER: {
-      statusCode: 402,
+      //statusCode: 402,
       success: false,
       message: "Please provide a valid phone number",
       type: "ACTION_NOT_ALLOWED",
