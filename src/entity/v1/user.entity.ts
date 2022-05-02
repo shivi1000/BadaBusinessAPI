@@ -23,25 +23,16 @@ export async function insertInterest(data: any) {
   try {
     const _id = data.tokenId;
     console.log(_id);
-    const userDataUpdated = await user.updateOne(
-      { _id },
-      { $set: { interest: data.interest } },
-      { runValidators: true }
-    );
+    const userDataUpdated = await user.updateOne({ _id },{ $set: { interest: data.interest } },{ runValidators: true });
     return userDataUpdated;
   } catch (err) {
     return Promise.reject(err);
   }
 }
 
-// export async function checkUser( phoneNumber:any) {
-//     const userExist = await user.findOne(phoneNumber );
-//     return userExist;
+export async function checkUser( phoneNumber:any) {
+    const userExist = await user.findOne({phoneNumber: phoneNumber} );
+    return userExist;
+}
 
-// }
 
-// export async function generate( phoneNumber:any) {
-//     const newUser = await user.create({
-//     phoneNumber: phoneNumber })
-//     return newUser;
-// }

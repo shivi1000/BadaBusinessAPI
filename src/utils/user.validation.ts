@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import { DBENUMS } from '../constant/enum.constants';
 
 class userValidationClass {
+
 userSignup = Joi.object({
     firstName: Joi.string().trim().min(3).max(15).lowercase().required(),
     lastName: Joi.string().trim().min(3).max(15).lowercase().required(),
@@ -9,10 +9,6 @@ userSignup = Joi.object({
     email: Joi.string().trim().email().required(),
     userType: Joi.string().trim().required()
 
-})
-
-userInterest = Joi.object({
-    interest: Joi.string().trim().lowercase().required().valid(...Object.values(DBENUMS.INTEREST))
 })
 
 }

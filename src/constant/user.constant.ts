@@ -29,7 +29,7 @@ export const STATUS_MSG = {
     INCORRECT_CREDENTIALS: {
         //statusCode: 400,
         success: false,
-        message: "Incorrect credentials, OTP is wrong",
+        message: "Incorrect credentials",
         //type: "INCORRECT_CREDENTIALS",
     },
     BLOCKED_ACCOUNT: {
@@ -122,16 +122,23 @@ export const STATUS_MSG = {
       };
     },
     USER_EXIST: {
-      //statusCode: 406,
+      statusCode: 406,
       success: false,
       message: "User Already Exist",
-      //type: "ACTION_NOT_ALLOWED",
+      type: "ACTION_NOT_ALLOWED",
     },
 
     PROVIDE_PHONE_NUMBER: {
       statusCode: 402,
       success: false,
       message: "Please provide a valid phone number",
+      type: "ACTION_NOT_ALLOWED",
+    },
+
+    NOT_REGISTERED: {
+      statusCode: 403,
+      success: false,
+      message: "You are not a registered user, Please signup first",
       type: "ACTION_NOT_ALLOWED",
     },
 
@@ -147,10 +154,10 @@ export const STATUS_MSG = {
 
   SUCCESS: {
     DEFAULT: {
-      //statusCode: 200,
+      statusCode: 200,
       success: true,
-      message: "Successfully Signed up",
-      //name: "DEFAULT",
+      message: "You have Successfully Signed up",
+      name: "DEFAULT",
     },
 
     OTP: {
@@ -167,21 +174,19 @@ export const STATUS_MSG = {
       type: "DEFAULT",
     },
 
-    LOGIN: (msg: any) => {
-      return {
+    LOGIN: {
         statusCode: 200,
         success: true,
-        message: msg,
+        message: "You have Successfully Loged In",
         name: "Success",
-      };
     },
     CREATED: (msg: any) => {
       return {
         statusCode: 201,
-        //success: true,
+        success: true,
         message: "Created Successfully",
         data: msg,
-        //type: "CREATED",
+        type: "CREATED",
       };
     },
     PROFILE_UPDATED: {

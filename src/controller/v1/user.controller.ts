@@ -60,25 +60,25 @@ class userControllerClass {
 
   
 
-  // async login_generateOtp(req: Request, res: Response): Promise<void> {
-  //   try {
-  //     const data: any = await userService.signup_generateOtp(req.body);
-  //     console.log(data);
-  //     res.status(200).json(data);
-  //   } catch (err:any) {
-  //     res.status(404).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
-  //   }
-  // }
+  async login_generateOtp(req: Request, res: Response): Promise<void> {
+    try {
+      const data: any = await userService.login_generateOtp(req.body);
+      console.log(data);
+      res.status(200).json(data);
+    } catch (err:any) {
+      res.status(404).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+    }
+  }
 
-  // async login_verifyOtp(req: Request, res: Response): Promise<void> {
-  //   try {
-  //     const data: any = await userService.signup_verifyOtp(req.body);
-  //     console.log(data);
-  //       res.status(200).json(data);
-  //   } catch (err: any) {
-  //     res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
-  //   }
-  // }
+  async login_verifyOtp(req: Request, res: Response): Promise<void> {
+    try {
+      const data: any = await userService.login_verifyOtp(req.body);
+      console.log(data);
+        res.status(200).json(data);
+    } catch (err: any) {
+      res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
+    }
+  }
 
 }
 
