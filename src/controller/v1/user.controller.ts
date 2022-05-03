@@ -5,7 +5,7 @@ import {checkexist,createUser,insertInterest} from "../../entity/v1/user.entity"
 import {userValidation,} from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
-import multer from "multer";
+//import multer from "multer";
 app.use(express.json());
 
 class userControllerClass {
