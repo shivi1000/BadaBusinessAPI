@@ -5,7 +5,7 @@ dotenv.config({path : './environment/.env'});
 import router from "./src/routes/v1/user.routes";
 import logger from 'morgan'
 import connection from "./src/config/mongo.connection";
-//import options from "./src/swagger/swagger"
+import options from "./src/routes/v1/user.routes";
 connection();
 
 app.use(logger("dev"))

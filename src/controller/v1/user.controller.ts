@@ -5,6 +5,7 @@ import {checkexist,createUser,insertInterest} from "../../entity/v1/user.entity"
 import {userValidation,} from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
+import multer from "multer";
 app.use(express.json());
 
 class userControllerClass {
@@ -79,6 +80,29 @@ class userControllerClass {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
     }
   }
+
+  async addPost(req: Request, res: Response): Promise<void> {
+    try {
+
+      var upload = multer({ dest: "uploads"})
+      const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './uploads');
+         },
+         filename: function (req, file, cb) {
+            cb(null, file.fieldname + ".jpg");
+         }
+      });
+    
+      upload = multer({ storage: storage });
+      
+
+} catch (err: any) {
+
+    }
+
+}
+
 
 }
 
