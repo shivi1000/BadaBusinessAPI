@@ -159,6 +159,6 @@ router.post("/user/login/generateOtp", userController.login_generateOtp);
 
 router.post("/user/login/verifyOtp", userController.login_verifyOtp);
 
-router.post("/addPost", userController.addPost);
+//router.post("/addPost", userController.addPost);
 
 export default router;

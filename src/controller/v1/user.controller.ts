@@ -81,27 +81,27 @@ class userControllerClass {
     }
   }
 
-  async addPost(req: Request, res: Response): Promise<void> {
-    try {
+//   async addPost(req: Request, res: Response): Promise<void> {
+//     try {
 
-      var upload = multer({ dest: "uploads"})
-      const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './uploads');
-         },
-         filename: function (req, file, cb) {
-            cb(null, file.fieldname + ".jpg");
-         }
-      });
+//       var upload = multer({ dest: "uploads"})
+//       const storage = multer.diskStorage({
+//         destination: function (req, file, cb) {
+//             cb(null, './uploads');
+//          },
+//          filename: function (req, file, cb) {
+//             cb(null, file.fieldname + ".jpg");
+//          }
+//       });
     
-      upload = multer({ storage: storage });
+//       upload = multer({ storage: storage });
       
 
-} catch (err: any) {
+// } catch (err: any) {
 
-    }
+//     }
 
-}
+// }
 
 
 }
