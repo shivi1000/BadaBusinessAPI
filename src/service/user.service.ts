@@ -42,23 +42,25 @@ class userServiceClass {
       //     otpData = verification_check;
       //  });
       // if (otpData.status != undefined && otpData.status === "approved") {
+
         if( otp === "1234") {
-        return Promise.resolve(STATUS_MSG.SUCCESS.OTP_VERIFY);
+        return true
       } else {
-        return Promise.reject(STATUS_MSG.ERROR.INCORRECT_CREDENTIALS);
+        return Promise.reject("Invalid OTP");
       }
     } catch (err: any) {
-      return Promise.reject(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE("Error"));
+      return Promise.reject("Error");
     }
   }
 
   async login_generateOtp(data: any): Promise<Object> {
     try {
       const userExist = await checkUser(data.phoneNumber);
+      console.log(userExist)
       if (userExist) {
-        await client.verify
-          .services(serviceID)
-          .verifications.create({ to: `+${data.phoneNumber}`, channel: "sms" });
+        // await client.verify
+        //   .services(serviceID)
+        //   .verifications.create({ to: `+${data.phoneNumber}`, channel: "sms" });
         return Promise.resolve(STATUS_MSG.SUCCESS.OTP);
       } else {
         return Promise.reject(STATUS_MSG.ERROR.NOT_REGISTERED);
@@ -71,17 +73,18 @@ class userServiceClass {
   async login_verifyOtp(data: any): Promise<Object> {
     try {
       const { otp, phoneNumber } = data;
-      let otpData: any;
-      await client.verify
-        .services(serviceID)
-        .verificationChecks.create({
-          to: `+${data.phoneNumber}`,
-          code: data.otp,
-        })
-        .then((verification_check: any) => {
-          otpData = verification_check;
-        });
-      if (otpData.status != undefined && otpData.status === "approved") {
+      // let otpData: any;
+      // await client.verify
+      //   .services(serviceID)
+      //   .verificationChecks.create({
+      //     to: `+${data.phoneNumber}`,
+      //     code: data.otp,
+      //   })
+      //   .then((verification_check: any) => {
+      //     otpData = verification_check;
+      //   });
+      // if (otpData.status != undefined && otpData.status === "approved") {
+        if (otp === "1234") {
         return Promise.resolve(STATUS_MSG.SUCCESS.LOGIN);
       } else {
         return Promise.reject(STATUS_MSG.ERROR.UNAUTHORIZED);

@@ -23,14 +23,15 @@ class userControllerClass {
   async signup_verifyOtp(req: Request, res: Response): Promise<void> {
     try {
       const data: any = await userService.signup_verifyOtp(req.body);
-      console.log(data);
-        res.status(200).json(data);
+      // console.log(data);
+      let token: any = Jwt.sign({ _id: data._id, token: data.token},<string>process.env.JWT_SECRET_KEY);
+        res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT({token}));
     } catch (err: any) {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
     }
   }
 
-  async userDetails(req: Request, res: Response): Promise<void> {
+  async createProfile(req: Request, res: Response): Promise<void> {
     try {
       await userValidation.userSignup.validateAsync(req.body);
       const oldUser = await checkexist(req.body.email);
@@ -38,8 +39,8 @@ class userControllerClass {
         res.status(406).json(STATUS_MSG.ERROR.USER_EXIST);
       } else {
         var newUser = await createUser(req.body);
-        let token: any = Jwt.sign({ _id: newUser._id },<string>process.env.JWT_SECRET_KEY);
-        res.status(201).json(STATUS_MSG.SUCCESS.CREATED({ token }));
+       // let token: any = Jwt.sign({ _id: newUser._id },<string>process.env.JWT_SECRET_KEY);
+        //res.status(201).json(STATUS_MSG.SUCCESS.CREATED({ token }));
       }
     } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
@@ -81,27 +82,6 @@ class userControllerClass {
     }
   }
 
-//   async addPost(req: Request, res: Response): Promise<void> {
-//     try {
-
-//       var upload = multer({ dest: "uploads"})
-//       const storage = multer.diskStorage({
-//         destination: function (req, file, cb) {
-//             cb(null, './uploads');
-//          },
-//          filename: function (req, file, cb) {
-//             cb(null, file.fieldname + ".jpg");
-//          }
-//       });
-    
-//       upload = multer({ storage: storage });
-      
-
-// } catch (err: any) {
-
-//     }
-
-// }
 
 
 }

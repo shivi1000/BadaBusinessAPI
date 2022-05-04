@@ -153,12 +153,14 @@ export const STATUS_MSG = {
   },
 
   SUCCESS: {
-    DEFAULT: {
+    DEFAULT: (data:any) => {
+      return {
       statusCode: 200,
       success: true,
+      data: data,
       message: "You have Successfully Signed up",
       name: "DEFAULT",
-    },
+     } },
 
     OTP: {
       statusCode: 200,
