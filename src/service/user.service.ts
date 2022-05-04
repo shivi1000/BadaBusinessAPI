@@ -1,7 +1,7 @@
 import express, { Request, NextFunction, Response } from "express";
 import { STATUS_MSG } from "../constant/user.constant";
 import { Twilio } from "twilio";
-import { checkUser } from "../entity/v1/user.entity";
+import { checkExist } from "../entity/v1/user.entity";
 export const app = express();
 app.use(express.json());
 
@@ -43,10 +43,10 @@ class userServiceClass {
       //  });
       // if (otpData.status != undefined && otpData.status === "approved") {
 
-        if( otp === "1234") {
-        return true
+        if( data.otp === "1234") {
+        return Promise.resolve(STATUS_MSG.SUCCESS.OTP_VERIFY)
       } else {
-        return Promise.reject("Invalid OTP");
+        return Promise.resolve(STATUS_MSG.ERROR.UNAUTHORIZED);
       }
     } catch (err: any) {
       return Promise.reject("Error");
@@ -55,9 +55,8 @@ class userServiceClass {
 
   async login_generateOtp(data: any): Promise<Object> {
     try {
-      const userExist = await checkUser(data.phoneNumber);
-      console.log(userExist)
-      if (userExist) {
+      const oldUser = await checkExist(data.phoneNumber);
+      if (oldUser) {
         // await client.verify
         //   .services(serviceID)
         //   .verifications.create({ to: `+${data.phoneNumber}`, channel: "sms" });

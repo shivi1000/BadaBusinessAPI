@@ -7,36 +7,33 @@ const Schemas = new Schema({
     
     firstName: {
         type: String,
-        required: true
     },
 
     lastName: {
         type: String,
-        required: true
     },
     
     phoneNumber: {
         type: String,
-        required: true,
+        //required: true,
         unique: true,
     },
 
-    email: {
-        type: String,
-        required: true,
-        unique:true,
-    },
+    // email: {
+    //     type: String,
+    //     sparse: true,
+    //     unique:true,
+    //     index: true,
+    // },
     
     userType: {
         type: String,
-        required: true,
         enum: ["Entrepreneur" , "Professional" , "Student"]
 
     },
 
    interest: {
     type: [String],
-    required: true,
     enum:DBENUMS.INTEREST
     
    },

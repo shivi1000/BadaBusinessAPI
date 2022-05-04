@@ -191,11 +191,12 @@ export const STATUS_MSG = {
         type: "CREATED",
       };
     },
-    PROFILE_UPDATED: {
+    PROFILE_UPDATED:(msg: any)=> {
+      return {
       statusCode: 200,
       success: true,
       message: "Profile updated Successfully",
-      type: "CREATED",
+      type: "CREATED",}
     },
     UPDATED: {
       statusCode: 200,

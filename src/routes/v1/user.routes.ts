@@ -151,9 +151,9 @@ router.post("/user/signup/generateOtp", userController.signup_generateOtp);
 
 router.post("/user/signup/verifyOtp", userController.signup_verifyOtp);
 
-router.post("/createProfile", userController.createProfile);
+router.put("/user/interest", verifyToken, userController.interest);
 
-router.post("/user/interest", verifyToken, userController.interest);
+router.put("/createProfile", verifyToken, userController.createProfile);
 
 router.post("/user/login/generateOtp", userController.login_generateOtp);
 
