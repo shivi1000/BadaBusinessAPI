@@ -40,7 +40,7 @@ class userControllerClass {
     try {
       const newUser = await insertInterest(req.body)
       if (newUser) {
-        res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT(newUser));
+        res.status(200).json(STATUS_MSG.SUCCESS.UPDATED(newUser));
       } else {
         res.status(400).json(STATUS_MSG.ERROR.NOT_EXIST);
       }

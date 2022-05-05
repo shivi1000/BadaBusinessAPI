@@ -157,7 +157,7 @@ export const STATUS_MSG = {
       return {
       statusCode: 200,
       success: true,
-      //data: data,
+      data: data,
       message: "You have Successfully Signed up",
       type: "DEFAULT",
      } },
@@ -198,11 +198,12 @@ export const STATUS_MSG = {
       message: "Profile updated Successfully",
       type: "CREATED",}
     },
-    UPDATED: {
+    UPDATED: (msg: any) => {
+      return {
       statusCode: 200,
       success: true,
       message: "Updated Successfully",
-      name: "UPDATED",
+      name: "UPDATED",}
     },
     LOGOUT: {
       statusCode: 200,
