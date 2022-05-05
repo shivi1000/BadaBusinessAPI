@@ -15,8 +15,9 @@ const Schemas = new Schema({
     
     phoneNumber: {
         type: String,
-        //required: true,
         unique: true,
+        sparse: true,
+        index: true,
     },
 
     // email: {
