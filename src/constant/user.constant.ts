@@ -203,7 +203,7 @@ export const STATUS_MSG = {
       statusCode: 200,
       success: true,
       message: "Updated Successfully",
-      name: "UPDATED",}
+      type: "UPDATED",}
     },
     LOGOUT: {
       statusCode: 200,
