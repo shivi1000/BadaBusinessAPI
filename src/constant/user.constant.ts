@@ -157,7 +157,7 @@ export const STATUS_MSG = {
       return {
       statusCode: 200,
       success: true,
-      data: data,
+      //data: data,
       message: "You have Successfully Signed up",
       type: "DEFAULT",
      } },
