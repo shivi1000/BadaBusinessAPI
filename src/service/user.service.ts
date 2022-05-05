@@ -1,14 +1,14 @@
 import express, { Request, NextFunction, Response } from "express";
 import { STATUS_MSG } from "../constant/user.constant";
-import { Twilio } from "twilio";
+// import { Twilio } from "twilio";
 import { checkExist } from "../entity/v1/user.entity";
 export const app = express();
 app.use(express.json());
 
-const accountSid = <string>process.env.TWILIO_ACCOUNT_SID;
-const authToken = <string>process.env.TWILIO_AUTH_TOKEN;
-const serviceID = <string>process.env.SERVICE_ID;
-const client = new Twilio(accountSid, authToken);
+// const accountSid = <string>process.env.TWILIO_ACCOUNT_SID;
+// const authToken = <string>process.env.TWILIO_AUTH_TOKEN;
+// const serviceID = <string>process.env.SERVICE_ID;
+// const client = new Twilio(accountSid, authToken);
 
 class userServiceClass {
 
