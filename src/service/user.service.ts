@@ -42,14 +42,13 @@ class userServiceClass {
       //     otpData = verification_check;
       //  });
       // if (otpData.status != undefined && otpData.status === "approved") {
-
         if( data.otp === "1234") {
         return Promise.resolve(STATUS_MSG.SUCCESS.OTP_VERIFY)
       } else {
-        return Promise.resolve(STATUS_MSG.ERROR.UNAUTHORIZED);
+        return Promise.reject("Invalid OTP");
       }
     } catch (err: any) {
-      return Promise.reject("Error");
+      return Promise.reject(err);
     }
   }
 

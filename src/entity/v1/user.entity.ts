@@ -10,10 +10,14 @@ export async function checkExist( phoneNumber:any ) {
 }
 
 export async function insertPhoneNumber( data: any ) {
+  try{
   const newUser = await user.create({
     phoneNumber: data.phoneNumber,
   });
   return newUser;
+}  catch (err:any){
+  return Promise.reject(err);
+}
 }
 
 export async function insertInterest(data: any) {

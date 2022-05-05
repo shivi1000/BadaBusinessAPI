@@ -28,7 +28,7 @@ class userControllerClass {
     try {
       await userValidation.userContact.validateAsync(req.body);
       const data: any = await userService.signup_verifyOtp(req.body);
-      var newUser = await insertPhoneNumber(req.body);
+      const newUser = await insertPhoneNumber(req.body);
       let token: any = Jwt.sign({userId: newUser._id },<string>process.env.JWT_SECRET_KEY);
         res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT({token}));
     } catch (err: any) { 

@@ -80,8 +80,8 @@ export const STATUS_MSG = {
       return {
         statusCode: 401,
         success: false,
-        //message: msg,
-        message: "Invalid OTP",
+        message: msg,
+        // message: "Invalid OTP",
         type: "UNAUTHORIZED",
       };
     },
