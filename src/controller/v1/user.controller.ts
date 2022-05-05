@@ -32,6 +32,7 @@ class userControllerClass {
       let token: any = Jwt.sign({userId: newUser._id },<string>process.env.JWT_SECRET_KEY);
         res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT({token}));
     } catch (err: any) {
+      
       res.status(401).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
     }
   }
