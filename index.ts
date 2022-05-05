@@ -13,7 +13,6 @@ app.use(logger("dev"))
 //import SwaggerUi from "swagger-ui-express";
 app.use(express.json());
 const port = process.env.PORT;
-// console.log(port)
 //const swaggerSpec: object = swaggerJSDoc(options);
 //app.use("/api-docs", SwaggerUi.serve, SwaggerUi.setup(swaggerSpec));
 app.use('/',router)

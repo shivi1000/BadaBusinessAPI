@@ -159,7 +159,7 @@ export const STATUS_MSG = {
       success: true,
       data: data,
       message: "You have Successfully Signed up",
-      name: "DEFAULT",
+      type: "DEFAULT",
      } },
 
     OTP: {
@@ -180,7 +180,7 @@ export const STATUS_MSG = {
         statusCode: 200,
         success: true,
         message: "You have Successfully Loged In",
-        name: "Success",
+        type: "Success",
     },
     CREATED: (msg: any) => {
       return {
