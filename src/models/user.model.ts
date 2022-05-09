@@ -19,13 +19,6 @@ const Schemas = new Schema({
         sparse: true,
         index: true,
     },
-
-    // email: {
-    //     type: String,
-    //     sparse: true,
-    //     unique:true,
-    //     index: true,
-    // },
     
     userType: {
         type: String,

@@ -3,11 +3,14 @@ import  { Schema, model } from 'mongoose';
 
  const trainerSchema = new Schema({
 
-    trainnerFullName: {
+    trainnerFirstName: {
         type: String,
-        required: true
     },
-    trainnerMobileNumber: {
+
+    trainnerLastName: {
+        type: String,
+    },
+    trainnerPhoneNumber: {
         type: Number,
         required: true,
         unique: true

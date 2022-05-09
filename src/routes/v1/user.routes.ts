@@ -16,7 +16,8 @@ router.post("/user/login/generateOtp", userController.login_generateOtp);
 
 router.post("/user/login/verifyOtp", userController.login_verifyOtp);
 
-// router.post("/trainer/signup/generateOtp", trainerController.signup_generateOtp);
+router.get("/user/viewProfile", verifyToken, userController.viewProfile);
+
 
 
 

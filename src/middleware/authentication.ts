@@ -12,9 +12,8 @@ export default function verifyToken(req: Request, res: Response, next: NextFunct
             if (!userVerification) {
                 res.send({ msg: "Authentication error" })
             }else {
-                console.log(userVerification)
                 req.body.tokenId = userVerification.userId;
-                console.log(req.body.tokenId);
+                
                 next();
             }
         }

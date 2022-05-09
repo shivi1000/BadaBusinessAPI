@@ -1,7 +1,7 @@
 import express, { Request, NextFunction, Response } from "express";
-import { STATUS_MSG } from "../constant/user.constant";
+import { STATUS_MSG } from "../constant/constant";
 // import { Twilio } from "twilio";
-import { checkExist } from "../entity/v1/user.entity";
+import { checkExist } from "../entity/v1/entity";
 export const app = express();
 app.use(express.json());
 

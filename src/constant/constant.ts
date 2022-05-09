@@ -162,6 +162,16 @@ export const STATUS_MSG = {
       type: "DEFAULT",
      } },
 
+     SUCCESS: (data:any) => {
+       return {
+       statusCode: 200,
+       success: true,
+       data: data,
+       message: "Success",
+       type: "DEFAULT",
+      }
+     },
+
     OTP: {
       statusCode: 200,
       success: true,

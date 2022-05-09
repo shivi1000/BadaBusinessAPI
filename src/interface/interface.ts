@@ -3,7 +3,8 @@ export interface User {
     lastName: String,
     phoneNumber: Number,
     email: String,
-    userType: String
+    userType: String,
+    interest:String
 
 }
 
@@ -21,11 +22,6 @@ export interface Trainer {
     trainnerEmail: String,
     experience: Number,
     specialization: String
-}
-
-export interface Interest {
-    interest: String
-    
 }
 
 export interface Subscription {
