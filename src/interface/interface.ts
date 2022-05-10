@@ -4,13 +4,13 @@ export interface User {
     phoneNumber: Number,
     email: String,
     userType: String,
-    interest:String
+    interest:String,
 
 }
 
 export interface Otp {
     phoneNumber: Number,
-    phoneOtp: String,
+    otp: String,
     createdAt: Date,
     timestamp: Number
 }
@@ -21,7 +21,9 @@ export interface Trainer {
     trainnerPhoneNumber: Number,
     trainnerEmail: String,
     experience: Number,
-    specialization: String
+    specialization: String,
+    videoUrl: String,
+    thumbnailUrl: String,
 }
 
 export interface Subscription {

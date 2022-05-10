@@ -1,5 +1,5 @@
 import  { Schema, model } from 'mongoose';
- import { User} from '../interface/interface';
+ import { Trainer} from '../interface/interface';
 
  const trainerSchema = new Schema({
 
@@ -15,13 +15,19 @@ import  { Schema, model } from 'mongoose';
         required: true,
         unique: true
     },
-
+    videoUrl:{
+            type:[String],
+            default: ["https://www.youtube.com/watch?v=3IxYmIQ20rI"]
+    },
+    thumbnailUrl:{
+        type:[String],
+        default:["https://www.techsmith.com/blog/wp-content/uploads/2019/06/YouTube-Thumbnail-Sizes.png"]
+    },
     trainnerEmail: {
         type: String,
         required: true,
         unique: true
     },
-
     experience: {
         type: Number,
         required: true
@@ -33,6 +39,6 @@ import  { Schema, model } from 'mongoose';
         },
 })
 
-const trainer = model<User>('User', trainerSchema)
+const trainer = model<Trainer>('Trainner_Model', trainerSchema)
 export default trainer
 

@@ -11,6 +11,7 @@ import {
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
+import { SessionModel } from "../../models/session.model";
 app.use(express.json());
 
 class userControllerClass {
@@ -38,6 +39,11 @@ class userControllerClass {
         { userId: newUser._id },
         <string>process.env.JWT_SECRET_KEY
       );
+        await SessionModel.create({
+        userId: newUser._id,
+        deviceId: req.body.deviceId?req.body.deviceId:"0",
+        deviceType: req.body.deviceType?req.body.deviceType:"0",
+        })
       res.status(200).json(STATUS_MSG.SUCCESS.DEFAULT({ token }));
     } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
@@ -90,6 +96,11 @@ class userControllerClass {
     try {
       const data: any = await userService.login_verifyOtp(req.body);
       console.log(data);
+      // await SessionModel.create({
+      //   userId: data._id,
+      //   deviceId: req.body.deviceId?req.body.deviceId:"0",
+      //   deviceType: req.body.deviceType?req.body.deviceType:"0",
+      //   })
       res.status(200).json(data);
     } catch (err: any) {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));

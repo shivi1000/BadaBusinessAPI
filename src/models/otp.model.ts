@@ -8,7 +8,7 @@ const otpSchema = new Schema<Otp>({
         required: true
     },
 
-    phoneOtp: {
+    otp: {
         type: String,
         required: true
     }
