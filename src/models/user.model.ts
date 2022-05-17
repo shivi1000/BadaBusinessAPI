@@ -23,14 +23,12 @@ const Schemas = new Schema({
     userType: {
         type: String,
         enum: ["Entrepreneur" , "Professional" , "Student"]
-
     },
 
    interest: {
     type: [String],
     enum:DBENUMS.INTEREST
-    
-   },
+    },
 
 });
 

@@ -10,11 +10,15 @@ userProfile = Joi.object({
 
 })
 
-userContact = Joi.object({
+userContact2 = Joi.object({
     phoneNumber: Joi.string().length(12).pattern(/^[0-9]+$/).required(),
     otp: Joi.string().length(4).required()
 })
 
+userContact= Joi.object({
+    phoneNumber: Joi.string().length(12).pattern(/^[0-9]+$/).required(),
+
+})
 
 }
 

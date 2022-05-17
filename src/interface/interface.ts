@@ -16,14 +16,18 @@ export interface Otp {
 }
 
 export interface Trainer {
-    trainnerfirstName: String,
-    trainnerlastName: String,
-    trainnerPhoneNumber: Number,
-    trainnerEmail: String,
-    experience: Number,
-    specialization: String,
+    trainerFirstName: String,
+    trainerLastName: String,
+    trainerPhoneNumber: String,
+    trainerEmail: String,
     videoUrl: String,
     thumbnailUrl: String,
+}
+
+export interface Post {
+    videoUrl: String,
+    thumbnailUrl: String,
+    description: String,
 }
 
 export interface Subscription {

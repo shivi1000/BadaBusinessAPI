@@ -38,12 +38,7 @@ export async function createUser(data: any) {
     const _id = data.tokenId;
     const userDataUpdated = await user.findByIdAndUpdate(
       { _id },
-      {
-        $set: {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          userType: data.userType,
-        },
+      { $set: {firstName: data.firstName, lastName: data.lastName, userType: data.userType,},
       },
       { runValidators: true, new: true }
     );
@@ -62,3 +57,8 @@ export async function viewUser(info: any) {
     return Promise.reject(err);
   }
 }
+
+// export async function checkExist2(email: any) {
+//   const oldTrainer = await user.findOne({ email: email });
+//   return oldTrainer;
+// }

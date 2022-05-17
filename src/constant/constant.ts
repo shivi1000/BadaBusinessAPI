@@ -144,7 +144,7 @@ export const STATUS_MSG = {
 
     DEFAULT_ERROR_MESSAGE: (message:any) => {
       return {
-        statusCode: 401,
+        statusCode: 405,
         success: false,
         message: message,
         type: "DEFAULT_ERROR_MESSAGE",

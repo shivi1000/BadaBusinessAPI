@@ -12,8 +12,7 @@ export default function verifyToken(req: Request, res: Response, next: NextFunct
             if (!userVerification) {
                 res.send({ msg: "Authentication error" })
             }else {
-                req.body.tokenId = userVerification.userId;
-                
+                req.body.tokenId = userVerification.trainerId;
                 next();
             }
         }

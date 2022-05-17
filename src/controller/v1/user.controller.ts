@@ -1,13 +1,7 @@
 import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/constant";
-import {
-  checkExist,
-  createUser,
-  insertInterest,
-  insertPhoneNumber,
-  viewUser,
-} from "../../entity/v1/entity";
+import {checkExist,createUser,insertInterest,insertPhoneNumber,viewUser,} from "../../entity/v1/entity";
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
@@ -17,6 +11,7 @@ app.use(express.json());
 class userControllerClass {
   async signup_generateOtp(req: Request, res: Response): Promise<void> {
     try {
+      await userValidation.userContact.validateAsync(req.body);
       const oldUser = await checkExist(req.body.phoneNumber);
       if (oldUser) {
         res.status(406).json(STATUS_MSG.ERROR.USER_EXIST);
@@ -32,11 +27,11 @@ class userControllerClass {
 
   async signup_verifyOtp(req: Request, res: Response): Promise<void> {
     try {
-      await userValidation.userContact.validateAsync(req.body);
+      await userValidation.userContact2.validateAsync(req.body);
       const data: any = await userService.signup_verifyOtp(req.body);
       const newUser = await insertPhoneNumber(req.body);
       let token: any = Jwt.sign(
-        { userId: newUser._id },
+        { token: newUser._id },
         <string>process.env.JWT_SECRET_KEY
       );
         await SessionModel.create({
