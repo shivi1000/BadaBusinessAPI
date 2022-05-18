@@ -17,7 +17,7 @@ router.post("/trainer/login/verifyOtp", trainerController.login_verifyOtp);
 
 router.get("/trainer/viewProfile", verifyToken, verifyTrainer, trainerController.viewProfile);
 
-router.get("/trainer/viewPost", verifyToken, verifyTrainer, trainerController.viewPost);
+router.get("/trainer/viewPost", verifyToken,  trainerController.viewPost);
 
 // router.post("/trainer/browseCourse", verifyToken, trainerController.browseCourses); 
 
