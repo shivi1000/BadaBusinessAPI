@@ -1,21 +1,21 @@
-import  { Schema, model } from 'mongoose';
-import {Otp} from "../interface/interface"
+// import  { Schema, model } from 'mongoose';
+// import {Otp} from "../interface/interface"
 
-const otpSchema = new Schema<Otp>({
+// const otpSchema = new Schema<Otp>({
 
-    phoneNumber: {
-        type: Number,
-        required: true
-    },
+//     phoneNumber: {
+//         type: Number,
+//         required: true
+//     },
 
-    otp: {
-        type: String,
-        required: true
-    }
-},
+//     otp: {
+//         type: String,
+//         required: true
+//     }
+// },
 
-    {timestamps: true}
+//     {timestamps: true}
     
-)
-const otp = model<Otp>('User', otpSchema)
-export default otp;
+// )
+// const otp = model<Otp>('User', otpSchema)
+// export default otp;
