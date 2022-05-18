@@ -5,14 +5,6 @@ export interface User {
     email: String,
     userType: String,
     interest:String,
-
-}
-
-export interface Otp {
-    phoneNumber: Number,
-    otp: String,
-    createdAt: Date,
-    timestamp: Number
 }
 
 export interface Trainer {
@@ -20,27 +12,40 @@ export interface Trainer {
     trainerLastName: String,
     trainerPhoneNumber: String,
     trainerEmail: String,
-    videoUrl: String,
-    thumbnailUrl: String,
+}
+
+export interface Admin {
+    adminFirstName: String,
+    adminLastName: String,
+    adminPhoneNumber: String,
+    adminEmail: String,
 }
 
 export interface Post {
     videoUrl: String,
     thumbnailUrl: String,
     description: String,
+    duration: String,
+    category: String
 }
 
-export interface Subscription {
-    subscription: String,
-    subscriptionDate: Number,
-    subscriptionExpiry: Number,
-    subscriptionPrice: Number
+export interface browseCourses {
+    imageUrl: String,
+    description: String,
+    courseDuration: String,
+    category: String,
+    numberOfVideos: String,
 }
 
-export interface Course {
-    course: String
+export interface myCourses{
+    imageUrl: String,
+    description: String,
+    courseDuration: String,
+    category: String,
+    numberOfVideos: String,
 }
 
-export interface Query {
-    query: String
-}
+
+// export interface homePage{
+
+// }

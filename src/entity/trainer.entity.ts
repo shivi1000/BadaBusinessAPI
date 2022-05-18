@@ -1,6 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
+import trainer from "../models/trainer.model";
 import post from "../models/post.model";
-import trainer from "../models/trainer.model"
+// import browseCourses from "../models/browseCourses.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -37,9 +38,9 @@ export async function insertPhoneNumber(data: any) {
     }
   }
 
-  export async function viewTrainer(info: any) {
+  export async function viewTrainer(data: any) {
     try {
-      const _id = info.tokenId;
+      const _id = data.tokenId;
       const trainerDataUpdated = await trainer.findById({_id:_id});
       return trainerDataUpdated;
     } catch (err: any) {
@@ -47,19 +48,29 @@ export async function insertPhoneNumber(data: any) {
     }
   }
 
-  export async function upload(data: any) {
-    try{
-     const userId = data.tokenId;
-     const trainerDataUpdated = await post.create({
-     userId: userId,
-     videoUrl: data.videoUrl,
-     thumbnailUrl: data.thumbnailUrl,
-     description: data.description,
-     duration: data.duration,
-     category: data.category 
-    });
-     return trainerDataUpdated;
+  export async function viewPost(data: any) {
+    try {
+      const _id = data.tokenId;
+      const findPost = await post.findOne({userId:_id})
+      return findPost;
     } catch (err: any) {
-    return Promise.reject(err);
-      }
+      return Promise.reject(err);
+    }
   }
+
+  // export async function browseCourse(data: any) {
+  //   try{
+  //     const userId = data.tokenId;
+  //     const trainerDataUpdated = await browseCourses.create({
+  //       userId: userId,
+  //       imageUrl: data.imageUrl,
+  //       description: data.description,
+  //       courseDuration: data.courseDuration,
+  //       category: data.category,
+  //       numberOfVideos: data.numberOfVideos
+  //     });
+  //       return trainerDataUpdated;
+  //   } catch (err: any) {
+  //     return Promise.reject(err);
+  //   }
+  // }

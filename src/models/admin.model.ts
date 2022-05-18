@@ -1,21 +1,21 @@
 import  { Schema, model } from 'mongoose';
- import { Trainer} from '../interface/interface';
+import { Admin} from '../interface/interface';
 
- const trainerSchema = new Schema({
+ const adminSchema = new Schema({
 
-    trainerFirstName: {
+    adminFirstName: {
         type: String,
     },
-    trainerLastName: {
+    adminLastName: {
         type: String,
     },
-    trainerPhoneNumber: {
+    adminPhoneNumber: {
         type: String,
         unique: true,
         sparse: true,
         index: true,
     },
-    trainerEmail: {
+    adminEmail: {
         type: String,
         unique: true,
         sparse: true,
@@ -23,10 +23,9 @@ import  { Schema, model } from 'mongoose';
     },
     role: {
         type: String,
-        default: 'trainer'
+        default: 'admin'
     }
 })
 
-const trainer = model<Trainer>('trainer', trainerSchema)
-export default trainer
-
+const admin = model<Admin>('admin', adminSchema)
+export default admin

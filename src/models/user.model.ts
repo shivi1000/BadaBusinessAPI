@@ -30,6 +30,11 @@ const Schemas = new Schema({
     enum:DBENUMS.INTEREST
     },
 
+    role: {
+        type: String,
+        default: 'user'
+    }
+
 });
 
 const user = model<User>('user', Schemas)

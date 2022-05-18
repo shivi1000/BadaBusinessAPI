@@ -31,9 +31,7 @@ class userControllerClass {
       const data: any = await userService.signup_verifyOtp(req.body);
       const newUser = await insertPhoneNumber(req.body);
       let token: any = Jwt.sign(
-        { token: newUser._id },
-        <string>process.env.JWT_SECRET_KEY
-      );
+        { token: newUser._id ,role:"user"},<string>process.env.JWT_SECRET_KEY);
         await SessionModel.create({
         userId: newUser._id,
         deviceId: req.body.deviceId?req.body.deviceId:"0",

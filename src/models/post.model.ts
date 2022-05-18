@@ -7,7 +7,7 @@ const postSchema = new Schema({
     userId: { 
         type: ObjectId,
         required: true,
-        ref: 'trainer'
+        ref: 'admin'
     },
 
     videoUrl: {
