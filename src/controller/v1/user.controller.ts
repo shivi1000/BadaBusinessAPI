@@ -125,7 +125,7 @@ class userControllerClass {
     try{
       const post = await getPost();
       res.status(200).json(
-        STATUS_MSG.SUCCESS.SUCCESS({post}));
+        STATUS_MSG.SUCCESS.SUCCESS(post));
    } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
   }
