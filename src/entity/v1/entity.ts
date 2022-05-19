@@ -65,7 +65,7 @@ export async function viewUser(info: any) {
 export async function getPost() {
   try {
     const post = await postModel.find({})
-        return post;
+    return post;
   } catch (err) {
     return Promise.reject(err);
   }
