@@ -1,7 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import trainer from "../models/trainer.model";
 import post from "../models/post.model";
-// import browseCourses from "../models/browseCourses.model";
+import browseCourse from "../models/browseCourses.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -58,19 +58,15 @@ export async function insertPhoneNumber(data: any) {
     }
   }
 
-  // export async function browseCourse(data: any) {
-  //   try{
-  //     const userId = data.tokenId;
-  //     const trainerDataUpdated = await browseCourses.create({
-  //       userId: userId,
-  //       imageUrl: data.imageUrl,
-  //       description: data.description,
-  //       courseDuration: data.courseDuration,
-  //       category: data.category,
-  //       numberOfVideos: data.numberOfVideos
-  //     });
-  //       return trainerDataUpdated;
-  //   } catch (err: any) {
-  //     return Promise.reject(err);
-  //   }
-  // }
+  export async function viewBrowseCourses(data: any) {
+    try {
+      const _id = data.tokenId;
+      const findBrowseCourse = await post.findOne({userId:_id})
+      return findBrowseCourse;
+    } catch (err: any) {
+      return Promise.reject(err);
+    }
+  }
+
+  
+  

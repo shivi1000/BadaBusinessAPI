@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/constant";
-import {checkExist,createUser,insertInterest,insertPhoneNumber,viewUser,} from "../../entity/v1/entity";
+import {checkExist,createUser,getPost,insertInterest,insertPhoneNumber,viewUser,} from "../../entity/v1/entity";
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
@@ -119,6 +119,15 @@ class userControllerClass {
     } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
     }
+  }
+
+  async getPost(req: Request, res: Response): Promise<void> {
+    try{
+      const post = await getPost();
+      res.status(200).json(post);
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
   }
 }
 

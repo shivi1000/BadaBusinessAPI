@@ -7,7 +7,7 @@ import {myCourses} from '../interface/interface';
   userId: { 
     type: ObjectId,
     required: true,
-    ref: 'trainer'
+    ref: 'admin'
 },
 
 imageUrl: {

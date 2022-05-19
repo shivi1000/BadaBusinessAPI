@@ -3,12 +3,18 @@ import { STATUS_MSG } from "../../constant/constant";
 export const app = express();
 app.use(express.json());
 import Jwt from "jsonwebtoken";
-import { checkExist, createAdmin, insertPhoneNumber, upload, viewAdmin } from "../../entity/v1/admin.entity";
+import {
+  checkExist,
+  createAdmin,
+  insertPhoneNumber,
+  upload,
+  viewAdmin, browseCourse,
+} from "../../entity/v1/admin.entity";
 import { adminValidation } from "../../utils/admin.validation";
 import { adminService } from "../../service/admin.service";
 
 class adminControllerClass {
-  async signup_generateOtp(req: Request, res: Response){
+  async signup_generateOtp(req: Request, res: Response) {
     try {
       await adminValidation.adminContact.validateAsync(req.body);
       const oldAdmin = await checkExist(req.body.phoneNumber);
@@ -30,7 +36,9 @@ class adminControllerClass {
       const data: any = await adminService.signup_verifyOtp(req.body);
       const newAdmin = await insertPhoneNumber(req.body);
       let token: any = Jwt.sign(
-        { trainerId: newAdmin._id, role:"admin" },<string>process.env.JWT_SECRET_KEY);
+        { trainerId: newAdmin._id, role: "admin" },
+        <string>process.env.JWT_SECRET_KEY
+      );
       // await SessionModel.create({
       // trainerId: newTrainer._id,
       // deviceId: req.body.deviceId?req.body.deviceId:"0",
@@ -95,7 +103,7 @@ class adminControllerClass {
             adminFirstName: newAdmin.adminFirstName,
             adminLastName: newAdmin.adminLastName,
             adminPhoneNumber: newAdmin.adminPhoneNumber,
-            adminEmail: newAdmin.adminEmail
+            adminEmail: newAdmin.adminEmail,
           })
         );
       } else {
@@ -112,13 +120,17 @@ class adminControllerClass {
       res.send(newAdmin);
     } catch (err: any) {
       return err;
-    }}
-    async errs(req: Request, res: Response): Promise<void> {
-      try {
-       res.send("Route Not Found");
-      } catch (err: any) {
-        return err;
-      }}
+    }
+  }
+
+  async browseCourses(req: Request, res: Response): Promise<void> {
+    try {
+      const newTrainer = await browseCourse(req.body);
+      res.send(newTrainer);
+    } catch (err: any) {
+      return err;
+    }
+  }
 }
 
 export const adminController = new adminControllerClass();

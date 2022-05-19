@@ -1,4 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from "express";
+import post from "../../models/post.model";
+import postModel from "../../models/post.model";
 import user from "../../models/user.model";
 const app: Application = express();
 app.use(express.json());
@@ -56,6 +58,15 @@ export async function viewUser(info: any) {
     const userDataUpdated = await user.findById({_id:_id});
     return userDataUpdated;
   } catch (err: any) {
+    return Promise.reject(err);
+  }
+}
+
+export async function getPost() {
+  try {
+    const post = await postModel.find({})
+        return post;
+  } catch (err) {
     return Promise.reject(err);
   }
 }

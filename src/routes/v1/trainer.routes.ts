@@ -19,8 +19,6 @@ router.get("/trainer/viewProfile", verifyToken, verifyTrainer, trainerController
 
 router.get("/trainer/viewPost", verifyToken,  trainerController.viewPost);
 
-// router.post("/trainer/browseCourse", verifyToken, trainerController.browseCourses); 
-
-// router.post("/trainer/myCourse", verifyToken, trainerController.myCourse);
+router.get("/trainer/viewBrowseCourses", verifyToken,  trainerController.viewPost);
 
 export default router;

@@ -19,6 +19,8 @@ adminRouter.get("/admin/viewProfile", verifyToken, verifyAdmin, adminController.
 
 adminRouter.post("/admin/uploadPost",verifyToken, verifyAdmin, adminController.uploadPost);
 
-adminRouter.use("*",adminController.errs)
+adminRouter.post("/admin/browseCourse", verifyToken, verifyAdmin, adminController.browseCourses); 
+
+// adminRouter.post("/trainer/myCourse", verifyToken, verifyAdmin, adminController.myCourse);
 
 export default adminRouter;

@@ -19,4 +19,6 @@ router.post("/user/login/verifyOtp", userController.login_verifyOtp);
 
 router.get("/user/viewProfile", verifyToken, verifyUser , userController.viewProfile);
 
+router.get("/user/getPost", userController.getPost);
+
 export default router;
