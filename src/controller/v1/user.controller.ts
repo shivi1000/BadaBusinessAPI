@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/constant";
-import {checkExist,createUser,getPost,insertInterest,insertPhoneNumber,viewUser,} from "../../entity/v1/entity";
+import {checkExist,createUser,getBrowseCourse,getMyCourse,getPost,insertInterest,insertPhoneNumber,viewUser,} from "../../entity/v1/entity";
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
@@ -90,11 +90,6 @@ class userControllerClass {
     try {
       const data: any = await userService.login_verifyOtp(req.body);
       console.log(data);
-      // await SessionModel.create({
-      //   userId: data._id,
-      //   deviceId: req.body.deviceId?req.body.deviceId:"0",
-      //   deviceType: req.body.deviceType?req.body.deviceType:"0",
-      //   })
       res.status(200).json(data);
     } catch (err: any) {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
@@ -126,6 +121,26 @@ class userControllerClass {
       const post = await getPost();
       res.status(200).json(
         STATUS_MSG.SUCCESS.SUCCESS(post));
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
+  }
+
+  async getBrowseCourse(req: Request, res: Response): Promise<void> {
+    try{
+      const browseCourses = await getBrowseCourse();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(browseCourses));
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
+  }
+
+  async getMyCourse(req: Request, res: Response): Promise<void> {
+    try{
+      const myCourses = await getMyCourse();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(myCourses));
    } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
   }

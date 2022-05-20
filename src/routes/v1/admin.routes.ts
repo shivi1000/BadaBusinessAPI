@@ -21,6 +21,6 @@ adminRouter.post("/admin/uploadPost",verifyToken, verifyAdmin, adminController.u
 
 adminRouter.post("/admin/browseCourse", verifyToken, verifyAdmin, adminController.browseCourses); 
 
-// adminRouter.post("/trainer/myCourse", verifyToken, verifyAdmin, adminController.myCourse);
+adminRouter.post("/admin/myCourse", verifyToken, verifyAdmin, adminController.myCourses); 
 
 export default adminRouter;

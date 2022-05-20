@@ -1,7 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from "express";
-import post from "../../models/post.model";
 import postModel from "../../models/post.model";
 import user from "../../models/user.model";
+import browseCoursesModel from "../../models/browseCourses.model";
+import myCoursesModel from "../../models/myCourse.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -64,14 +65,27 @@ export async function viewUser(info: any) {
 
 export async function getPost() {
   try {
-    const post = await postModel.find({})
+    const post = await postModel.find({});
     return post;
   } catch (err) {
     return Promise.reject(err);
   }
 }
 
-// export async function checkExist2(email: any) {
-//   const oldTrainer = await user.findOne({ email: email });
-//   return oldTrainer;
-// }
+export async function getBrowseCourse() {
+  try {
+    const browseCourses = await browseCoursesModel.find({});
+    return browseCourses;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
+export async function getMyCourse() {
+  try {
+    const myCourses = await myCoursesModel.find({});
+    return myCourses;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}

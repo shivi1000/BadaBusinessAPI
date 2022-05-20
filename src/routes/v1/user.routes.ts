@@ -19,6 +19,11 @@ router.post("/user/login/verifyOtp", userController.login_verifyOtp);
 
 router.get("/user/viewProfile", verifyToken, verifyUser , userController.viewProfile);
 
-router.get("/user/getPost", userController.getPost);
+router.get("/user/getPost", verifyToken, verifyUser, userController.getPost);
+
+router.get("/user/getBrowseCourses", verifyToken, verifyUser, userController.getBrowseCourse);
+
+router.get("/user/getMyCourses", verifyToken, verifyUser, userController.getMyCourse);
+
 
 export default router;

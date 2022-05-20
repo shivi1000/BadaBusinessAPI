@@ -1,7 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import trainer from "../models/trainer.model";
-import post from "../models/post.model";
-import browseCourse from "../models/browseCourses.model";
+import postModel from "../models/post.model";
+import browseCoursesModel from "../models/browseCourses.model";
+import myCoursesModel from "../models/myCourse.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -48,22 +49,29 @@ export async function insertPhoneNumber(data: any) {
     }
   }
 
-  export async function viewPost(data: any) {
+  export async function getPost() {
     try {
-      const _id = data.tokenId;
-      const findPost = await post.findOne({userId:_id})
-      return findPost;
-    } catch (err: any) {
+      const post = await postModel.find({})
+      return post;
+    } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  export async function viewBrowseCourses(data: any) {
+  export async function getBrowseCourse() {
     try {
-      const _id = data.tokenId;
-      const findBrowseCourse = await post.findOne({userId:_id})
-      return findBrowseCourse;
-    } catch (err: any) {
+      const browseCourses = await browseCoursesModel.find({});
+      return browseCourses;
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
+  export async function getMyCourse() {
+    try {
+      const myCourses = await myCoursesModel.find({});
+      return myCourses;
+    } catch (err) {
       return Promise.reject(err);
     }
   }

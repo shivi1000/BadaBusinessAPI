@@ -3,15 +3,10 @@ import { STATUS_MSG } from "../../constant/constant";
 export const app = express();
 app.use(express.json());
 import Jwt from "jsonwebtoken";
-import {
-  checkExist,
-  createAdmin,
-  insertPhoneNumber,
-  upload,
-  viewAdmin, browseCourse,
-} from "../../entity/v1/admin.entity";
+import {checkExist,createAdmin,insertPhoneNumber,upload,viewAdmin, browseCourse,myCourse} from "../../entity/v1/admin.entity";
 import { adminValidation } from "../../utils/admin.validation";
 import { adminService } from "../../service/admin.service";
+import myCourses from "../../models/myCourse.model";
 
 class adminControllerClass {
   async signup_generateOtp(req: Request, res: Response) {
@@ -83,11 +78,6 @@ class adminControllerClass {
     try {
       const data: any = await adminService.login_verifyOtp(req.body);
       console.log(data);
-      // await SessionModel.create({
-      //   userId: data._id,
-      //   deviceId: req.body.deviceId?req.body.deviceId:"0",
-      //   deviceType: req.body.deviceType?req.body.deviceType:"0",
-      //   })
       res.status(200).json(data);
     } catch (err: any) {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
@@ -126,6 +116,15 @@ class adminControllerClass {
   async browseCourses(req: Request, res: Response): Promise<void> {
     try {
       const newTrainer = await browseCourse(req.body);
+      res.send(newTrainer);
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  async myCourses(req: Request, res: Response): Promise<void> {
+    try {
+      const newTrainer = await myCourse(req.body);
       res.send(newTrainer);
     } catch (err: any) {
       return err;

@@ -17,8 +17,10 @@ router.post("/trainer/login/verifyOtp", trainerController.login_verifyOtp);
 
 router.get("/trainer/viewProfile", verifyToken, verifyTrainer, trainerController.viewProfile);
 
-router.get("/trainer/viewPost", verifyToken,  trainerController.viewPost);
+router.get("/trainer/getPost", verifyToken, verifyTrainer, trainerController.getPost);
 
-router.get("/trainer/viewBrowseCourses", verifyToken,  trainerController.viewPost);
+router.get("/trainer/getBrowseCourses", verifyToken, verifyTrainer, trainerController.getBrowseCourse);
+
+router.get("/trainer/getmyCourses", verifyToken, verifyTrainer, trainerController.getmyCourse);
 
 export default router;

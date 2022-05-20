@@ -2,6 +2,7 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import post from "../../models/post.model"
 import admin from "../../models/admin.model";
 import browseCourses from "../../models/browseCourses.model";
+import myCourses from "../../models/myCourse.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -81,4 +82,20 @@ export async function upload(data: any) {
       return Promise.reject(err);
     }
   }
-  
+
+    export async function myCourse(data: any) {
+      try{
+        const userId = data.tokenId;
+        const adminDataUpdated = await myCourses.create({
+          userId: userId,
+          imageUrl: data.imageUrl,
+          description: data.description,
+          courseDuration: data.courseDuration,
+          category: data.category,
+          numberOfVideos: data.numberOfVideos
+        });
+          return adminDataUpdated;
+      } catch (err: any) {
+        return Promise.reject(err);
+      }
+  }

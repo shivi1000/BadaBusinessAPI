@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { STATUS_MSG } from "../../constant/constant";
 import { trainerValidation } from "../../utils/trainer.validation";
 import {
-  checkExist,createTrainer,insertPhoneNumber,viewPost,viewTrainer,viewBrowseCourses,} 
+  checkExist,createTrainer,insertPhoneNumber,viewTrainer , getPost, getBrowseCourse, getMyCourse} 
   from "../../entity/trainer.entity";
 import { trainerService } from "../../service/trainer.service";
 export const app = express();
@@ -79,11 +79,6 @@ class trainerControllerClass {
     try {
       const data: any = await trainerService.login_verifyOtp(req.body);
       console.log(data);
-      // await SessionModel.create({
-      //   userId: data._id,
-      //   deviceId: req.body.deviceId?req.body.deviceId:"0",
-      //   deviceType: req.body.deviceType?req.body.deviceType:"0",
-      //   })
       res.status(200).json(data);
     } catch (err: any) {
       res.status(404).json(STATUS_MSG.ERROR.UNAUTHORIZED(err.message));
@@ -110,46 +105,34 @@ class trainerControllerClass {
     }
   }
 
-  async viewPost(req: Request, res: Response): Promise<void> {
-    try {
-      const newTrainer = await viewPost(req.body);
-      if (newTrainer) {
-        res.status(200).json(
-          STATUS_MSG.SUCCESS.SUCCESS({
-            videoUrl: newTrainer.videoUrl,
-            thumbnailUrl: newTrainer.thumbnailUrl,
-            description: newTrainer.description,
-            duration: newTrainer.duration,
-            category: newTrainer.category,
-          })
-        );
-      } else {
-        res.status(402).json(STATUS_MSG.SUCCESS.EMPTY_RECORD);
-      }
-    } catch (err: any) {
+  async getPost(req: Request, res: Response): Promise<void> {
+    try{
+      const post = await getPost();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(post));
+   } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
-    }
+  }
   }
 
-  async viewBrowseCourse(req: Request, res: Response): Promise<void> {
-    try {
-      const newTrainer = await viewBrowseCourses(req.body);
-      if (newTrainer) {
-        res.status(200).json(
-          STATUS_MSG.SUCCESS.SUCCESS({
-            imageUrl: newTrainer.videoUrl,
-            description: newTrainer.description,
-            //courseDuration: newTrainer.courseDuration,
-            category: newTrainer.category,
-            //numberOfVideos: newTrainer.numberOfVideos,
-          })
-        );
-      } else {
-        res.status(402).json(STATUS_MSG.SUCCESS.EMPTY_RECORD);
-      }
-    } catch (err: any) {
+  async getBrowseCourse(req: Request, res: Response): Promise<void> {
+    try{
+      const browseCourses = await getBrowseCourse();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(browseCourses));
+   } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
-    }
+  }
+  }
+
+  async getmyCourse(req: Request, res: Response): Promise<void> {
+    try{
+      const myCourses = await getMyCourse();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(myCourses));
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
   }
 
   
