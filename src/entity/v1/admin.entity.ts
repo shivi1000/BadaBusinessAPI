@@ -4,6 +4,7 @@ import admin from "../../models/admin.model";
 import browseCourses from "../../models/browseCourses.model";
 import myCourses from "../../models/myCourse.model";
 import Content from "../../models/contents.model";
+import Certificate from "../../models/certificate.model"
 const app: Application = express();
 app.use(express.json());
 
@@ -115,4 +116,17 @@ export async function upload(data: any) {
     } catch (err: any) {
       return Promise.reject(err);
     }
+}
+
+export async function certificate(data: any) {
+  try{
+    const userId = data.tokenId;
+    const adminDataUpdated= await Certificate.create({
+      userId: userId,
+      certificate: data.certificate,
+    });
+    return adminDataUpdated;
+  } catch (err: any) {
+    return Promise.reject(err);
+  }
 }

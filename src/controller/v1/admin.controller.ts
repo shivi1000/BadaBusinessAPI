@@ -4,7 +4,7 @@ export const app = express();
 app.use(express.json());
 import Jwt from "jsonwebtoken";
 import
- {checkExist,createAdmin,insertPhoneNumber,upload,viewAdmin, browseCourse,myCourse, content}
+ {checkExist,createAdmin,insertPhoneNumber,upload,viewAdmin, browseCourse,myCourse, content, certificate}
   from "../../entity/v1/admin.entity";
 import { adminValidation } from "../../utils/admin.validation";
 import { adminService } from "../../service/admin.service";
@@ -135,6 +135,15 @@ class adminControllerClass {
   async contents(req: Request, res: Response): Promise<void> {
     try {
       const newTrainer = await content(req.body);
+       res.send(newTrainer);
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  async certificate(req: Request, res: Response): Promise<void> {
+    try {
+      const newTrainer = await certificate(req.body);
        res.send(newTrainer);
     } catch (err: any) {
       return err;

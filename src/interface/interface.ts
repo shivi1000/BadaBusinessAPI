@@ -52,3 +52,7 @@ export interface Content{
     aboutProfessors: String,
 }
 
+export interface Certificate{
+    certificate: String,
+}
+

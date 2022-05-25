@@ -27,6 +27,10 @@ router.get("/user/getMyCourses", verifyToken, verifyUser, userController.getMyCo
 
 router.get("/user/contents", verifyToken, verifyUser, userController.contents);
 
+router.get("/user/certificate", verifyToken, verifyUser, userController.certificates);
+
+
+
 
 
 export default router;

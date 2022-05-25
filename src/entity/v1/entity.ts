@@ -4,6 +4,7 @@ import user from "../../models/user.model";
 import browseCoursesModel from "../../models/browseCourses.model";
 import myCoursesModel from "../../models/myCourse.model";
 import contentsModel from "../../models/contents.model";
+import certificateModel from "../../models/certificate.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -95,6 +96,15 @@ export async function contents() {
   try {
     const contents = await contentsModel.find({});
     return contents;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
+export async function certificates() {
+  try {
+    const certificates = await certificateModel.find({});
+    return certificates;
   } catch (err) {
     return Promise.reject(err);
   }

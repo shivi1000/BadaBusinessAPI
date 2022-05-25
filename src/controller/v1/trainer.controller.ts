@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { STATUS_MSG } from "../../constant/constant";
 import { trainerValidation } from "../../utils/trainer.validation";
 import {
-  checkExist,createTrainer,insertPhoneNumber,viewTrainer , getPost, getBrowseCourse, getMyCourse, contents} 
+  checkExist,createTrainer,insertPhoneNumber,viewTrainer , getPost, getBrowseCourse, getMyCourse, contents, certificates} 
   from "../../entity/trainer.entity";
 import { trainerService } from "../../service/trainer.service";
 export const app = express();
@@ -140,6 +140,16 @@ class trainerControllerClass {
       const content = await contents();
       res.status(200).json(
         STATUS_MSG.SUCCESS.SUCCESS(content));
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
+  }
+
+  async certificates(req: Request, res: Response): Promise<void> {
+    try{
+      const certificate = await certificates();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(certificate));
    } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
   }

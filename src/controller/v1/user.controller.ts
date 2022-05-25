@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/constant";
-import {checkExist,createUser,getBrowseCourse,getMyCourse,getPost,insertInterest,insertPhoneNumber,viewUser,contents} from "../../entity/v1/entity";
+import {checkExist,createUser,getBrowseCourse,getMyCourse,getPost,insertInterest,insertPhoneNumber,viewUser,contents, certificates} from "../../entity/v1/entity";
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
@@ -151,6 +151,16 @@ class userControllerClass {
       const content = await contents();
       res.status(200).json(
         STATUS_MSG.SUCCESS.SUCCESS(content));
+   } catch (err: any) {
+      res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
+  }
+  }
+
+  async certificates(req: Request, res: Response): Promise<void> {
+    try{
+      const certificate = await certificates();
+      res.status(200).json(
+        STATUS_MSG.SUCCESS.SUCCESS(certificate));
    } catch (err: any) {
       res.status(401).json(STATUS_MSG.ERROR.DEFAULT_ERROR_MESSAGE(err.message));
   }

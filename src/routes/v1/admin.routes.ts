@@ -25,4 +25,7 @@ adminRouter.post("/admin/myCourse", verifyToken, verifyAdmin, adminController.my
 
 adminRouter.post("/admin/contents", verifyToken, verifyAdmin, adminController.contents);
 
+adminRouter.post("/admin/certificate", verifyToken, verifyAdmin, adminController.certificate);
+
+
 export default adminRouter;
