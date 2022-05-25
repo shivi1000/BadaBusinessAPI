@@ -45,7 +45,10 @@ export interface myCourses{
     numberOfVideos: String,
 }
 
+export interface Content{
+    courseHighlights: String,
+    keyLearnings: String,
+    courseBenefitsAndOutcomes: String,
+    aboutProfessors: String,
+}
 
-// export interface homePage{
-
-// }

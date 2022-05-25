@@ -3,6 +3,7 @@ import post from "../../models/post.model"
 import admin from "../../models/admin.model";
 import browseCourses from "../../models/browseCourses.model";
 import myCourses from "../../models/myCourse.model";
+import Content from "../../models/contents.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -99,3 +100,19 @@ export async function upload(data: any) {
         return Promise.reject(err);
       }
   }
+
+  export async function content(data: any) {
+    try{
+      const userId = data.tokenId;
+      const adminDataUpdated= await Content.create({
+        userId: userId,
+        courseHighlights: data.courseHighlights,
+        keyLearnings: data.keyLearnings,
+        courseBenefitsAndOutcomes: data.courseBenefitsAndOutcomes,
+        aboutProfessors: data.aboutProfessors
+      });
+      return adminDataUpdated;
+    } catch (err: any) {
+      return Promise.reject(err);
+    }
+}

@@ -3,6 +3,7 @@ import postModel from "../../models/post.model";
 import user from "../../models/user.model";
 import browseCoursesModel from "../../models/browseCourses.model";
 import myCoursesModel from "../../models/myCourse.model";
+import contentsModel from "../../models/contents.model";
 const app: Application = express();
 app.use(express.json());
 
@@ -85,6 +86,15 @@ export async function getMyCourse() {
   try {
     const myCourses = await myCoursesModel.find({});
     return myCourses;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
+export async function contents() {
+  try {
+    const contents = await contentsModel.find({});
+    return contents;
   } catch (err) {
     return Promise.reject(err);
   }

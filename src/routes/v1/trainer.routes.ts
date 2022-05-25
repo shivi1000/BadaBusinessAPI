@@ -23,4 +23,6 @@ router.get("/trainer/getBrowseCourses", verifyToken, verifyTrainer, trainerContr
 
 router.get("/trainer/getmyCourses", verifyToken, verifyTrainer, trainerController.getmyCourse);
 
+router.get("/trainer/contents", verifyToken, verifyTrainer, trainerController.contents);
+
 export default router;

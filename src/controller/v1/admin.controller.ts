@@ -3,10 +3,11 @@ import { STATUS_MSG } from "../../constant/constant";
 export const app = express();
 app.use(express.json());
 import Jwt from "jsonwebtoken";
-import {checkExist,createAdmin,insertPhoneNumber,upload,viewAdmin, browseCourse,myCourse} from "../../entity/v1/admin.entity";
+import
+ {checkExist,createAdmin,insertPhoneNumber,upload,viewAdmin, browseCourse,myCourse, content}
+  from "../../entity/v1/admin.entity";
 import { adminValidation } from "../../utils/admin.validation";
 import { adminService } from "../../service/admin.service";
-import myCourses from "../../models/myCourse.model";
 
 class adminControllerClass {
   async signup_generateOtp(req: Request, res: Response) {
@@ -130,6 +131,34 @@ class adminControllerClass {
       return err;
     }
   }
+
+  async contents(req: Request, res: Response): Promise<void> {
+    try {
+      const newTrainer = await content(req.body);
+       res.send(newTrainer);
+    } catch (err: any) {
+      return err;
+    }
+  }
 }
 
 export const adminController = new adminControllerClass();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
