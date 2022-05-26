@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 export const app = express();
 import { STATUS_MSG } from "../../constant/constant";
-import {checkExist,createUser,getBrowseCourse,getMyCourse,getPost,insertInterest,insertPhoneNumber,viewUser,contents, certificates} from "../../entity/v1/entity";
+import 
+{checkExist,createUser,getBrowseCourse,getMyCourse,getPost,insertInterest,insertPhoneNumber,viewUser,contents, certificates} 
+from "../../entity/v1/entity";
 import { userValidation } from "../../utils/user.validation";
 import { userService } from "../../service/user.service";
 import Jwt from "jsonwebtoken";
@@ -9,6 +11,12 @@ import { SessionModel } from "../../models/session.model";
 app.use(express.json());
 
 class userControllerClass {
+
+  async signup_socialMedia(req: Request, res: Response): Promise<void> {
+
+  }
+
+
   async signup_generateOtp(req: Request, res: Response): Promise<void> {
     try {
       await userValidation.userContact.validateAsync(req.body);

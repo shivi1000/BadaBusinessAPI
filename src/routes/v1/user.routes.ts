@@ -5,6 +5,8 @@ import verifyUser from "../../middleware/user.middleware";
 
 const router = Router();
 
+router.post("/user/signup/socialMedia", userController.signup_socialMedia);
+
 router.post("/user/signup/generateOtp", userController.signup_generateOtp);
 
 router.post("/user/signup/verifyOtp", userController.signup_verifyOtp);
@@ -28,10 +30,6 @@ router.get("/user/getMyCourses", verifyToken, verifyUser, userController.getMyCo
 router.get("/user/contents", verifyToken, verifyUser, userController.contents);
 
 router.get("/user/certificate", verifyToken, verifyUser, userController.certificates);
-
-
-
-
 
 export default router;
 
