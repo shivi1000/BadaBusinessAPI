@@ -35,6 +35,8 @@ export interface browseCourses {
     courseDuration: String,
     category: String,
     numberOfVideos: String,
+    price: String,
+    courseHighlights: String,
 }
 
 export interface myCourses{
@@ -46,7 +48,6 @@ export interface myCourses{
 }
 
 export interface Content{
-    courseHighlights: String,
     keyLearnings: String,
     courseBenefitsAndOutcomes: String,
     aboutProfessors: String,

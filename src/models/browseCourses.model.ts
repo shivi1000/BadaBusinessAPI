@@ -33,7 +33,17 @@ category: {
 numberOfVideos: {
   type: Number,
   required: true
-}
+},
+
+price: {
+  type: String,
+  required: true
+},
+
+courseHighlights: {
+  type: [String],
+  required: true,
+},
 });
 
 const browseCourses = model<browseCourses>('browseCourses',browseCoursesSchema);

@@ -77,7 +77,10 @@ export async function upload(data: any) {
         description: data.description,
         courseDuration: data.courseDuration,
         category: data.category,
-        numberOfVideos: data.numberOfVideos
+        numberOfVideos: data.numberOfVideos,
+        price: data.price,
+        courseHighlights: data.courseHighlights,
+
       });
         return adminDataUpdated;
     } catch (err: any) {
@@ -94,7 +97,8 @@ export async function upload(data: any) {
           description: data.description,
           courseDuration: data.courseDuration,
           category: data.category,
-          numberOfVideos: data.numberOfVideos
+          numberOfVideos: data.numberOfVideos,
+          price: data.price
         });
           return adminDataUpdated;
       } catch (err: any) {
@@ -107,7 +111,6 @@ export async function upload(data: any) {
       const userId = data.tokenId;
       const adminDataUpdated= await Content.create({
         userId: userId,
-        courseHighlights: data.courseHighlights,
         keyLearnings: data.keyLearnings,
         courseBenefitsAndOutcomes: data.courseBenefitsAndOutcomes,
         aboutProfessors: data.aboutProfessors

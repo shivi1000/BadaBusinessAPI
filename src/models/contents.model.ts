@@ -9,11 +9,6 @@ const contentsSchema = new Schema({
     ref: "admin",
   },
 
-  courseHighlights: {
-    type: [String],
-    required: true,
-  },
-
   keyLearnings: {
     type: [String],
     required: true,
